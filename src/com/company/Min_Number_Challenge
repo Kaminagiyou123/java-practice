@@ -1,0 +1,28 @@
+public class Main {
+	private static Scanner scanner = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int[] myIntegers = readInteger(5);
+		findMin(myIntegers);
+	}
+
+	private static int[] readInteger(int count) {
+		System.out.println("enter " + count + " numbers\r");
+		int[] values = new int[count];
+		for (int i = 0; i < count; i++) {
+			values[i] = scanner.nextInt();
+		}
+		return values;
+	}
+	public static int findMin(int[] arr){
+		int a=arr[0];
+		for (int i=0;i<arr.length;i++){
+			if(arr[i]<a){
+				a=arr[i];
+			}
+		}
+		System.out.println("The smallest number in the array is "+a);
+		return a;
+	}
+
+}
