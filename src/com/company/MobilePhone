@@ -1,0 +1,142 @@
+public class Main {
+	private static Scanner scanner = new Scanner(System.in);
+	private static boolean flag=true;
+
+	public static void main(String[] args) {
+		while (flag) {
+			mainMenu();
+			chooseAction();
+		}
+
+
+	}
+		public static void mainMenu () {
+			System.out.println("0 -- to MainMenu");
+			System.out.println("1 -- to Store a new Contact");
+			System.out.println("2 -- to modify an existing Contact");
+			System.out.println("3 -- to remove an existing Contact");
+			System.out.println("4 -- to query an existing Contact");
+			System.out.println("5 -- exit menu");
+		}
+
+		public static void chooseAction () {
+			System.out.println("choose your next step by entering a number\r");
+			int a = scanner.nextInt();
+			switch (a) {
+				case 0:
+					mainMenu();
+					break;
+				case 1:
+					System.out.println("enter your contact name\r");
+					scanner.nextLine();
+					String contactName = scanner.nextLine();
+					System.out.println("enter your contact number\r");
+					String contactNumber = scanner.nextLine();
+					Contacts newContact = new Contacts(contactName, contactNumber);
+					MobilePhone.addContact(newContact);
+					break;
+				case 2:
+					System.out.println("enter your contact name you want to change\r");
+					scanner.nextLine();
+					String oldName = scanner.nextLine();
+					System.out.println("enter the new name of your contact\r");
+					String newName = scanner.nextLine();
+					MobilePhone.changeContactName(oldName, newName);
+					break;
+				case 3:
+					System.out.println("enter your contact name you want to delete\r");
+					scanner.nextLine();
+					String NameToDelete = scanner.nextLine();
+					MobilePhone.removeContact(NameToDelete);
+					break;
+				case 4:
+					System.out.println("enter your contact name you want to query\r");
+					scanner.nextLine();
+					String NameToQuery = scanner.nextLine();
+					System.out.println(MobilePhone.findContact(NameToQuery));
+					MobilePhone.queryContactNames(NameToQuery);
+					break;
+				case 5:
+					System.out.println("exit the menu");
+					flag=false;
+				default:return;
+
+			}
+		}
+
+}
+
+public class Contacts {
+    private String name;
+    private String phoneNumber;
+
+    public Contacts(String name, String phoneNumber) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public static Contacts createNewContact(String name, String phoneNumber){
+        return new Contacts(name,phoneNumber);
+    }
+
+
+}
+
+public class MobilePhone {
+    private static ArrayList<Contacts> mobilePhone=new ArrayList<Contacts>();
+
+    public static void addContact(Contacts newContact){
+        mobilePhone.add(newContact);
+        for (int i=0;i< mobilePhone.size();i++){
+            System.out.println(mobilePhone.get(i).getName()+" is on the list");
+        }
+
+    }
+    public static int findContact(String contactName){
+        for (int i=0;i<mobilePhone.size();i++){
+           if (mobilePhone.get(i).getName().equals(contactName)){
+               return i;
+           }
+        }
+        return -1;
+    }
+    public static void removeContact(String contactName){
+        int contactIndex= findContact(contactName);
+        if (contactIndex>=0){
+            mobilePhone.remove(contactIndex);
+            System.out.println("Contact "+contactName +" has been successfully removed!");
+        } else {
+            System.out.println("Contact "+contactName +" is not in your contact list!");
+        }
+}
+    public static void changeContactName(String oldName,String contactName){
+        int contactIndex= findContact(oldName);
+        if (contactIndex>=0){
+            mobilePhone.get(contactIndex).setName(contactName);
+            System.out.println("Contact "+oldName +" has been successfully updated to "+contactName);
+        } else {
+            System.out.println("Contact "+oldName +" is not in your contact list!");
+        }
+    }
+    public static void queryContactNames(String contactName){
+        int contactIndex= findContact(contactName);
+        if (contactIndex>=0){
+         Contacts foundContact=mobilePhone.get(contactIndex);
+            System.out.println("Contact "+foundContact.getName() +" has phone number  "+foundContact.getPhoneNumber());
+        } else {
+            System.out.println("Contact "+contactName +" is not in your contact list!");
+        }
+    }
+}
