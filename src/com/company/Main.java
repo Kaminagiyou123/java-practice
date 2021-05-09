@@ -8,11 +8,10 @@ public class Main {
 	private static Scanner scanner = new Scanner(System.in);
 //
 	public static void main(String[] args) {
-//		int[] myIntegers = getIntegers(5);
-//		int[] sortedIntegers = sortIntegers(myIntegers);
-//		printArray(sortedIntegers);
-	int[] newArr=new int[5];
-		System.out.println(newArr[3]);
+		int[] myIntegers = getIntegers(5);
+		int[] sortedIntegers = sortIntegers(myIntegers);
+		printArray(sortedIntegers);
+
 
 
 	}
