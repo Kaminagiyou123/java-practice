@@ -1,0 +1,36 @@
+
+public class Main {
+
+	public static void main(String[] args) {
+		//two different copies in two locations
+		int myIntValue=10;
+		int anotherIntValue=myIntValue;
+		System.out.println("myIntValue = "+myIntValue);
+		System.out.println("AnotherIntValue = "+anotherIntValue);
+		anotherIntValue++;
+		System.out.println("myIntValue = "+myIntValue);
+		System.out.println("AnotherIntValue = "+anotherIntValue);
+        //a reference holds an address of the object but not the object itself
+		// with new keyword you can see if it is a reference or a copy
+		// everytime if there is a new keyword, there is a dereferencing
+		int[] myIntArray= new int[5];
+		int[] anotherArray=myIntArray;
+		anotherArray[0]=31;
+
+		System.out.println("the address of myIntArray is "+ myIntArray);
+		System.out.println("the address of anotherArray is "+ anotherArray);
+		System.out.println("myIntArray is "+ Arrays.toString(myIntArray));
+		System.out.println("anotherArray is "+ Arrays.toString(anotherArray));
+		anotherArray= new int[]{1,2,3,4,5};
+		modifyArray(myIntArray);
+		System.out.println("myIntArray is "+ Arrays.toString(myIntArray));
+		System.out.println("anotherArray is "+ Arrays.toString(anotherArray));
+
+	}
+	private static void modifyArray(int[] array){
+		array[0]=2;
+		array= new int[]{1,2,3,4,5};
+	}
+
+
+}
