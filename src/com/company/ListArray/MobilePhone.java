@@ -1,17 +1,18 @@
-package com.company;
+package com.company.ListArray;
 
-import java.sql.SQLOutput;
+import com.company.ListArray.Contact;
+
 import java.util.ArrayList;
 
 public class MobilePhone {
     private String myNumber;
     private ArrayList<Contact> myContacts;
-
+//constructor
     public MobilePhone(String myNumber) {
         this.myNumber = myNumber;
         this.myContacts = new ArrayList<Contact>();
     }
-
+//public functions
     public boolean addNewContact(Contact contact) {
         if (findContact(contact.getName()) >= 0) {
             System.out.println("Contact is already on File");
@@ -35,12 +36,6 @@ public class MobilePhone {
         return true;
     };
 
-    public String queryContact(Contact contact){
-        if (findContact(contact)>=0){
-            return contact.getName();
-        }
-        return null;
-    }
 
     public boolean removeContact(Contact contact){
         int foundPosition=findContact(contact);
@@ -52,6 +47,7 @@ public class MobilePhone {
         System.out.println(contact.getName() +" was deleted ");
         return true;
     }
+
     public void printContacts(){
         for (int i=0;i<this.myContacts.size();i++){
             System.out.println((i+1)+ "."+
@@ -71,7 +67,7 @@ public class MobilePhone {
 
 
 
-//overload the two findContact method;
+// two private functions: overload the two findContact method;
     private int findContact(Contact contact) {
         return this.myContacts.indexOf(contact);
     }

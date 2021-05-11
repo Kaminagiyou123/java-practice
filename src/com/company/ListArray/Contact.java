@@ -1,4 +1,4 @@
-package com.company;
+package com.company.ListArray;
 
 public class Contact {
     private String name;

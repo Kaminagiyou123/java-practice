@@ -3,133 +3,62 @@ package com.company;
 //array extends list
 //list is a resizable array;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
-	private static Scanner scanner = new Scanner(System.in);
-	private static MobilePhone mobilePhone = new MobilePhone("434 222 2222");
-	private static boolean quit = false;
+	//reference type
 
 	public static void main(String[] args) {
-		startPhone();
-		printActions();
-		while (!quit) {
-			printActions();
-			int action = scanner.nextInt();
-			scanner.nextLine();
-			switch (action) {
-				case 0:
-					System.out.println("\nshutting down...");
-					quit = true;
-					break;
-				case 1:
-					printContacts();
-					break;
-				case 2:
-					addNewContact();
-					break;
-				case 3:
-					updateContact();
-					break;
-				case 4:
-					removeContact();
-					break;
-				case 5:
-					queryContact();
-					break;
-				case 6:
-					printActions();
-
-			}
+		Customer customer=new Customer("Tim",54.95);
+		Customer anotherCustomer=customer;
+		anotherCustomer.setBalance(12.22);
+		System.out.println("Balance for customer " + customer.getName()+
+				" is "+ customer.getBalance());
+		ArrayList<Integer> intList=new ArrayList<Integer>();
+		intList.add(1);
+		intList.add(3);
+		intList.add(4);
+		for (int i=0;i<intList.size();i++){
+			System.out.println(i+" is "+ intList.get(i));
+		}
+		intList.add(1,2);
+		for (int i=0;i<intList.size();i++){
+			System.out.println(i+" is "+ intList.get(i));
 		}
 
+
+
+
+
+
+
 	}
 
-	private static void startPhone() {
-		System.out.println("Starting phone...");
-	}
+	public static class Customer {
+		private String name;
+		private double balance;
 
-	public static void printActions() {
-		System.out.println("\nAvailable Actions:\npress");
-		System.out.println("0 -- to shutdown\n");
-		System.out.println("1 -- to print contacts\n");
-		System.out.println("2 -- to add an existing Contact\n");
-		System.out.println("3 -- to update an existing Contact\n");
-		System.out.println("4 -- to remove an existing Contact\n");
-		System.out.println("5 -- query if an existing contact exists\n");
-		System.out.println("6 -- back to main menu");
-		System.out.println("Choose your action: ");
-	}
-
-	private static void printContacts() {
-		System.out.println("Contact list");
-		mobilePhone.printContacts();
-	}
-	private static void addNewContact(){
-		System.out.println("Enter new contact name: ");
-		String name = scanner.nextLine();
-		scanner.nextLine();
-		System.out.println("Enter new contact number: ");
-		String number = scanner.nextLine();
-		scanner.nextLine();
-		Contact contact=Contact.createNewContact(name,number);
-		if (mobilePhone.addNewContact(contact)){
-			System.out.println("new contacted added= "+name+ "phone= "+number);
-		} else {
-			return;
-		}
-	}
-	private static void updateContact(){
-		System.out.println("Enter existing contact name: ");
-		String name = scanner.nextLine();
-		scanner.nextLine();
-		Contact existingContactRecord=mobilePhone.queryContact(name);
-		if (existingContactRecord==null){
-			System.out.println("Couldnt get the contact");
-			return;
-		}
-		System.out.println("enter new contact name: ");
-		String newName=scanner.nextLine();
-		System.out.println("enter new contact number: ");
-		String newNumber=scanner.nextLine();
-		Contact newContact=Contact.createNewContact(newName,newNumber);
-		if (mobilePhone.updateContact(existingContactRecord,newContact)){
-			System.out.println("Succesully updated record");
-		} else{
-			System.out.println("Error updated record");
+		public Customer(String name, double balance) {
+			this.name = name;
+			this.balance = balance;
 		}
 
-	}
-	private static void removeContact() {
-		System.out.println("Enter existing contact name: ");
-		String name = scanner.nextLine();
-		scanner.nextLine();
-		Contact existingContactRecord = mobilePhone.queryContact(name);
-		if (existingContactRecord == null) {
-			System.out.println("Couldnt get the contact");
-			return;
-		}
-		if (mobilePhone.removeContact(existingContactRecord)) {
-			System.out.println("Successfully  removed");
-		} else {
-			System.out.println("Error removing record");
-		}
-	}
-
-	private static void queryContact() {
-		System.out.println("Enter existing contact name: ");
-		String name = scanner.nextLine();
-		scanner.nextLine();
-		Contact existingContactRecord = mobilePhone.queryContact(name);
-		if (existingContactRecord == null) {
-			System.out.println("Couldnt get the contact");
-			return;
+		public void setName(String name) {
+			this.name = name;
 		}
 
-		System.out.println("name is "+existingContactRecord.getName()+" number is "+existingContactRecord.getPhoneNumber());
+		public void setBalance(double balance) {
+			this.balance = balance;
+		}
 
+		public String getName() {
+			return name;
+		}
+
+		public double getBalance() {
+			return balance;
+		}
 	}
-
 }
 
 

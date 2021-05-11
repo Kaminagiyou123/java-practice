@@ -1,0 +1,51 @@
+class IntClass {
+	private int myValue;
+
+	public IntClass(int myValue) {
+		this.myValue = myValue;
+	}
+
+	public int getMyValue() {
+		return myValue;
+	}
+}
+
+public class Main {
+
+	public static void main(String[] args) {
+		String[] array= new String[10];
+		int[] intArray=new int[10];
+		ArrayList<String> arrayList= new ArrayList<String>();
+		arrayList.add("Tim");
+//		ArrayList<int> intArrayList=new ArrayList<int>();
+		ArrayList<IntClass> newIntArray=new ArrayList<IntClass>();
+		newIntArray.add(new IntClass(54));
+
+		ArrayList<Integer> integerArrayList= new ArrayList<Integer>();
+		for (int i=0;i<10;i++){
+			integerArrayList.add(Integer.valueOf(i));
+		}
+		Integer myIntValue=54; //Integer.valueOf(54)
+
+		ArrayList<Double> newDoubleValues= new ArrayList<Double>();
+		//boxing
+		for (double dbl=0.0;dbl<=10.0;dbl+=0.5){
+			newDoubleValues.add(Double.valueOf(dbl));
+		}
+
+		//unboxing
+		for(int i=0;i<newDoubleValues.size();i++){
+			double value=newDoubleValues.get(i).doubleValue();
+			System.out.println(i +" => "+ value);
+		}
+
+
+
+
+
+
+	}
+
+}
+
+
