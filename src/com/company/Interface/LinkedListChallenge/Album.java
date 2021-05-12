@@ -1,7 +1,8 @@
-package com.company.LinkedList;
+package com.company.Interface.LinkedListChallenge;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Album {
     private String name;
@@ -24,7 +25,7 @@ public class Album {
         System.out.println("new song "+songTitle +"is already in album "+this.name);
         return false;
     }
-    public Song findSong(String songTitle){
+    private Song findSong(String songTitle){
         for (int i=0;i<this.songs.size();i++){
             if (this.songs.get(i).getTitle().equals(songTitle)){
                 return this.songs.get(i);
@@ -32,7 +33,7 @@ public class Album {
         } return null;
     }
 
-    LinkedList<Song> playList=new LinkedList<Song>();
+    List<Song> playList=new ArrayList<Song>();
     public  boolean addToPlayList(int trackNumber, LinkedList<Song> playList){
         if (trackNumber>=this.songs.size()||trackNumber<0){
             System.out.println("Tracknumber "+trackNumber+ " is out of range");
@@ -46,7 +47,7 @@ public class Album {
 
     }
 
-    public  boolean addToPlayList(String songTitle, LinkedList<Song> playList){
+    public  boolean addToPlayList(String songTitle, List<Song> playList){
         Song foundSong=findSong(songTitle);
         if (foundSong!=null){
             playList.add(foundSong);
