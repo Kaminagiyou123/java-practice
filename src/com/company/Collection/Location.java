@@ -6,15 +6,16 @@ import java.util.Map;
 public class Location {
     private final int locationID;
     private final String descrption;
-    private final Map<String, Integer> exists;
+    private final Map<String, Integer> exits;
 
     public Location(int locationID, String descrption) {
         this.locationID = locationID;
         this.descrption = descrption;
-        this.exists=new HashMap<String, Integer>();
+        this.exits=new HashMap<String, Integer>();
+        this.exits.put("Q",0);
     }
     public void addExist(String direction, int location){
-        exists.put(direction,location);
+        exits.put(direction,location);
     }
 
     public int getLocationID() {
@@ -25,7 +26,7 @@ public class Location {
         return descrption;
     }
 
-    public Map<String, Integer> getExists() {
-        return new HashMap<String, Integer>(exists);
+    public Map<String, Integer> getExits() {
+        return new HashMap<String, Integer>(exits);
     }
 }
