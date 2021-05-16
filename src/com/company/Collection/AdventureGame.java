@@ -8,27 +8,27 @@ public class AdventureGame {
     private static Map<Integer,Location> locations=new HashMap<Integer, Location>();
     public static void main(String[] args) {
         Scanner scanner=new Scanner(System.in);
-
-        locations.put(0,new Location(0,"A"));
-        locations.put(1,new Location(1,"B"));
-        locations.put(2,new Location(2,"C"));
-        locations.put(3,new Location(3,"D"));
-        locations.put(4,new Location(4,"E"));
-        locations.put(5,new Location(5,"F"));
-        locations.get(1).addExist("W",2);
-        locations.get(1).addExist("E",3);
-        locations.get(1).addExist("S",4);
-        locations.get(1).addExist("N",5);
-
-        locations.get(2).addExist("N",5);
-        locations.get(3).addExist("W",1);
-
-        locations.get(4).addExist("N",1);
-        locations.get(4).addExist("W",2);
-
-
-        locations.get(5).addExist("S",1);
-        locations.get(5).addExist("W",2);
+        Map <String,Integer> tempExit=new HashMap<String,Integer>();
+        locations.put(0,new Location(0,"A",tempExit));
+        tempExit.put("W",2);
+        tempExit.put("E",3);
+        tempExit.put("S",4);
+        tempExit.put("N",5);
+        locations.put(1,new Location(1,"B",tempExit));
+        tempExit=new HashMap<String,Integer>();;
+        tempExit.put("N",5);
+        locations.put(2,new Location(2,"C",tempExit));
+        tempExit=new HashMap<String,Integer>();
+        tempExit.put("W",1);
+        locations.put(3,new Location(3,"D",tempExit));
+        tempExit=new HashMap<String,Integer>();
+        tempExit.put("N",1);
+        tempExit.put("W",2);
+        locations.put(4,new Location(4,"E",tempExit));
+        tempExit=new HashMap<String,Integer>();
+        tempExit.put("S",1);
+        tempExit.put("W",2);
+        locations.put(5,new Location(5,"F",tempExit));
 
         Map<String,String> vocabulary=new HashMap<String,String>();
         vocabulary.put("QUIT","Q");
