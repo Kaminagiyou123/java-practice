@@ -107,6 +107,9 @@ public class HeavenlyBodyMain {
 
         System.out.println(pluto.equals(earth1));
 
+        System.out.println();
+
+
 
 
     }
