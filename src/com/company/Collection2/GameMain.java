@@ -48,6 +48,8 @@ public class GameMain {
             System.out.println("your input is " + direction);
 
         if (exits.containsKey(direction)){
+            System.out.println(currentLocation.getExits().get(direction));
+
             currentLocation=locations.getLocation(currentLocation.getExits().get(direction));
         } else {
             System.out.println("You cannot go in that direction");
